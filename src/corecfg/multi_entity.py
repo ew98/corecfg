@@ -128,12 +128,13 @@ class MultiEntityCoreCfg:
         self.write_config_to_file()
 
 
-    def select_item(self, itemLabel: str | None = None):
+    def select_item(self, itemLabel: str | None = None, ignoreDebug: bool = False):
         if not itemLabel or itemLabel not in self._cfgInfo['items'].keys():
             raise ValueError(f"Error: Need a valid item label to select! {itemLabel} is invalid!")
 
         if self._cfgInfo['lastSelectedItem'] == itemLabel:
-            if self._runDebug:
+            # necessary to avoid prints when repeated/duplicate selection is expected during runtime
+            if self._runDebug and not ignoreDebug:
                 print(f'{color.CRED2}Error: {color.CWHITE2}{str(itemLabel)}{color.CRED2} is already selected!{color.CEND}')
             return
 
