@@ -276,7 +276,7 @@ class MultiEntityCoreCfg:
                 dataColor = self._cfgInfo['categoryMetadata'][key]['color']
                 maxLen = self._cfgInfo['categoryMetadata'][key]['maxLen']
                 if dataColor and maxLen:
-                    if maxLen < 0 and value and len(value) > 50:
+                    if maxLen < 0 and value and len(str(value)) > 50:
                         value = f"{value[0:10]} ... {value[-10:]}"
                     if 'qualifier' in self._cfgInfo['categoryMetadata'][key] and self._cfgInfo['categoryMetadata'][key]['qualifier']:
                         value = self.modify_value_by_qualifier(self._cfgInfo['categoryMetadata'][key]['qualifier'], value)
